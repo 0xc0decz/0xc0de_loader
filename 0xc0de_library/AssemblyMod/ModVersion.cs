@@ -5,25 +5,24 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Reflection;
 
-namespace _0xc0de_loader.AssemblyMod
+namespace _0xc0de_library.AssemblyMod
 {
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
     [ComVisible(true)]
     [__DynamicallyInvokable]
-    public sealed class ModNameAttribute : Attribute
+    public sealed class ModVersionAttribute : Attribute
     {
-        private string m_title;
+        private string m_version;
 
         [__DynamicallyInvokable]
-        public ModNameAttribute(string title) => this.m_title = title;
+        public ModVersionAttribute(string version) => this.m_version = version;
 
         [__DynamicallyInvokable]
-        public string Title
+        public string Version
         {
             [__DynamicallyInvokable]
-            get => this.m_title;
+            get => this.m_version;
         }
     }
-
-
 }
+

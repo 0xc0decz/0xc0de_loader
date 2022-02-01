@@ -72,9 +72,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyMod\ModID.cs" />
-    <Compile Include="AssemblyMod\ModVersion.cs" />
-    <Compile Include="AssemblyMod\ModName.cs" />
     <Compile Include="bridge.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="ModInfo.cs" />

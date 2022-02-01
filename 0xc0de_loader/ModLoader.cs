@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using _0xc0de_library;
+using _0xc0de_library.AssemblyMod;
 
 namespace _0xc0de_loader
 {
@@ -34,10 +34,11 @@ namespace _0xc0de_loader
             }
             else
             {
-                ModChecker();
                 int fileCount = Directory.GetFiles(Bridge._ModConfig.ModPath, "*.dll", SearchOption.TopDirectoryOnly)
                     .Length;
                 Bridge._library._msg("Mods in Folder : " + fileCount);
+                ModChecker();
+                
             }
             
             
@@ -63,42 +64,50 @@ namespace _0xc0de_loader
             int fileCount = Directory.GetFiles(Bridge._ModConfig.ModPath, "*.dll", SearchOption.TopDirectoryOnly)
                 .Length;
    
-
+            
 
             DirectoryInfo di = new DirectoryInfo(Bridge._ModConfig.ModPath);
             FileInfo[] files = di.GetFiles("*.dll");
             string str = "";
+            string str2 = "";
+            string str3 = "";
+            string str4 = "";
             foreach (FileInfo file in files)
             {
-                Bridge._library._msg(file.Name);
+                //Bridge._library._msg(file.Name);
                 Assembly assembly = Assembly.LoadFile(file.Name);
+                
                 if (assembly != null)
                 {
-
+                    
                     foreach (Attribute attr in Attribute.GetCustomAttributes(assembly))
                     {
-                        if (attr.GetType() == typeof(AssemblyMod.ModIDAttribute))
+                       
+                        if (attr.GetType() == typeof(ModIDAttribute))
                         {
-                            Bridge._library._msg1("Assembly ModID is \"{0}\".",
-                                ((AssemblyMod.ModIDAttribute) attr).Title);
+                          //  Bridge._library._msg("ModID : " + ((ModIDAttribute)attr).Title);
+                          str2 = ((ModIDAttribute)attr).Title;
 
                         }
-                        else if (attr.GetType() == typeof(AssemblyMod.ModNameAttribute))
+                        else if (attr.GetType() == typeof(ModNameAttribute))
                         {
-                            Bridge._library._msg1("Assembly Name is \"{0}\".",
-                                ((AssemblyMod.ModNameAttribute) attr).Title);
-
-
-                        }
-                        else if (attr.GetType() == typeof(AssemblyMod.ModVersionAttribute))
-                        {
-                            Bridge._library._msg1("Assembly Version is \"{0}\".",
-                                ((AssemblyMod.ModVersionAttribute)attr).Version);
+                            //Bridge._library._msg("ModID : " + ((ModNameAttribute)attr).Title);
+                           str3 = ((ModNameAttribute)attr).Title;
 
 
                         }
+                        else if (attr.GetType() == typeof(ModVersionAttribute))
+                        {
+                            //Bridge._library._msg("ModID : " + ((ModVersionAttribute)attr).Version);
+                            str4 = ((ModVersionAttribute)attr).Version;
+
+
+                        }
+
+                        
 
                     }
+                    Bridge._library._msg("[ MODID : " + str2 + " ][ MODNAME : " + str3 + " ][ VERSION : " + str4 + " ]");
                 }
 
 

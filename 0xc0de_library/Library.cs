@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using _0xc0de_library.AssemblyMod;
+
 
 namespace _0xc0de_library
 {
