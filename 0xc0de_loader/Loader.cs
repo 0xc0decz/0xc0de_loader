@@ -15,29 +15,17 @@ namespace _0xc0de_loader
             Config cfg = new Config();
             cfg.Load();
         }
-
-
-    
-
-      
     }
-
 
     public class Config
     {
         Library lib = new Library();
         Data _cd = new Data();
-       
-       
-
         public void Load()
         {
 
             CreateData();
             Check();
-            
-
-
 
         }
         public void Check()
@@ -95,14 +83,6 @@ namespace _0xc0de_loader
                 lib._msg("Error when try insert DATA - " + e);
             }
 
-
-
-
-        }
-
-        public void UpdateConfig()
-        {
-          
         }
 
         public void CreateData()
@@ -115,11 +95,6 @@ namespace _0xc0de_loader
             _cd.Key0[0] = "Debug";
             _cd.Key1[0] = "false";
       
-            
-        
-            
-            
-
         }
 
         class Data
