@@ -42,10 +42,12 @@
   <ItemGroup>
     <Compile Include="AssemblyMod\ModID.cs" />
     <Compile Include="AssemblyMod\ModName.cs" />
+    <Compile Include="AssemblyMod\ModAuthor.cs" />
     <Compile Include="AssemblyMod\ModVersion.cs" />
     <Compile Include="INI\INIConfig.cs" />
     <Compile Include="INI\INIFile.cs" />
     <Compile Include="Library.cs" />
+    <Compile Include="ModInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

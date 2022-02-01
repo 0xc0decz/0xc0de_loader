@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using HarmonyLib;
 using System.Reflection;
-using System.Text;
-using HarmonyLib;
-using _0xc0de_library;
 using UnityEngine;
 
 namespace _0xc0de_MGT_Mod
@@ -14,7 +9,7 @@ namespace _0xc0de_MGT_Mod
         static Main()
         {
             var harmony = new Harmony("com.0xc0de.MGT_Mod");
-       
+
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
@@ -30,8 +25,6 @@ namespace _0xc0de_MGT_Mod
                     Application.Quit();
                 }
             }
-
-
         }
     }
 }

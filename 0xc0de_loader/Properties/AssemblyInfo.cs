@@ -27,6 +27,7 @@ using _0xc0de_loader;
 [assembly: ModName(ModInfo.ModName)]
 [assembly: ModID(ModInfo.ModID)]
 [assembly: ModVersion(ModInfo.ModVer)]
+[assembly: ModAuthor(ModInfo.ModAuthor)]
 
 // Version information for an assembly consists of the following four values:
 //
