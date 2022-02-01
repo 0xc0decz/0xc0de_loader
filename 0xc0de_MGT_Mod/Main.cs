@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using System.Reflection;
 using UnityEngine;
+using _0xc0de_library;
 
 namespace _0xc0de_MGT_Mod
 {
@@ -9,7 +10,7 @@ namespace _0xc0de_MGT_Mod
         static Main()
         {
             var harmony = new Harmony("com.0xc0de.MGT_Mod");
-
+            
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 

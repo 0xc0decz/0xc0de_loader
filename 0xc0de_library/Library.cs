@@ -6,10 +6,10 @@ namespace _0xc0de_library
 {
     public class Library
     {
-        public string GetTime()
+        private string GetTime()
         {
             var time = DateTime.Now;
-            var format = "HH:mm:ss";
+            const string format = "HH:mm:ss";
             return time.ToString(format);
         }
 
@@ -62,21 +62,21 @@ namespace _0xc0de_library
     {
         private readonly Library library = new Library();
 
-        public string LibsDirectory { get; set; }
+        private string LibsDirectory { get; set; }
 
         public void Init()
         {
             Load();
         }
 
-        public void Load()
+        private void Load()
         {
             LibsDirectory = "Loader/Libs/";
             CheckLibs();
             GetLibs();
         }
 
-        public void GetLibs()
+        private void GetLibs()
         {
             var di = new DirectoryInfo(LibsDirectory);
             var files = di.GetFiles("*.dll");
@@ -84,23 +84,17 @@ namespace _0xc0de_library
             {
                 //Bridge._library._msg(file.Name);
                 var assembly = Assembly.LoadFile(LibsDirectory + file.Name);
-
-                if (assembly != null)
-                {
-                }
             }
         }
 
-        public void CheckLibs()
+        private void CheckLibs()
         {
-            if (!Directory.Exists(LibsDirectory))
-            {
-                library._msg("Libs Folder not exists - " + LibsDirectory);
-                CreateLibs();
-            }
+            if (Directory.Exists(LibsDirectory)) return;
+            library._msg("Libs Folder not exists - " + LibsDirectory);
+            CreateLibs();
         }
 
-        public void CreateLibs()
+        private void CreateLibs()
         {
             try
             {

@@ -14,7 +14,7 @@ namespace _0xc0de_loader
             Check();
         }
 
-        public void ModConfigInit()
+        private void ModConfigInit()
         {
             Bridge._ModConfig.ModFolder = "Mods/";
             Bridge._ModConfig.ModPath = "Loader/" + Bridge._ModConfig.ModFolder;
@@ -44,6 +44,7 @@ namespace _0xc0de_loader
                 var di = Directory.CreateDirectory(Bridge._ModConfig.ModPath);
                 Bridge._library._msg("Mods Directory successfully created ( " + Bridge._ModConfig.ModFolder + " )");
             }
+            // ReSharper disable once CatchAllClause
             catch (Exception e)
             {
                 Bridge._library._msg("Error when try create Mods Folder  - " + e);
@@ -67,26 +68,31 @@ namespace _0xc0de_loader
                 //Bridge._library._msg(file.Name);
                 var assembly = Assembly.LoadFile(Bridge._ModConfig.ModPath + file.Name);
 
-                if (assembly != null)
-                {
-                    foreach (var attr in Attribute.GetCustomAttributes(assembly))
-                        if (attr.GetType() == typeof(ModIDAttribute))
-                            //  Bridge._library._msg("ModID : " + ((ModIDAttribute)attr).Title);
-                            str2 = ((ModIDAttribute) attr).Title;
-                        else if (attr.GetType() == typeof(ModNameAttribute))
-                            //Bridge._library._msg("ModID : " + ((ModNameAttribute)attr).Title);
-                            str3 = ((ModNameAttribute) attr).Title;
-                        else if (attr.GetType() == typeof(ModVersionAttribute))
-                            //Bridge._library._msg("ModID : " + ((ModVersionAttribute)attr).Version);
-                            str4 = ((ModVersionAttribute) attr).Version;
-                    Bridge._library._msg("[ MODID : " + str2 + " ][ MODNAME : " + str3 + " ][ VERSION : " + str4 +
-                                         " ]");
-                }
+                foreach (var attr in Attribute.GetCustomAttributes(assembly))
+                    switch (attr)
+                    {
+                        //  Bridge._library._msg("ModID : " + ((ModIDAttribute)attr).Title);
+                        case ModIDAttribute attribute:
+                            str2 = attribute.Title;
+                            break;
+                        //Bridge._library._msg("ModID : " + ((ModNameAttribute)attr).Title);
+                        case ModNameAttribute attribute:
+                            str3 = attribute.Title;
+                            break;
+                        //Bridge._library._msg("ModID : " + ((ModVersionAttribute)attr).Version);
+                        case ModVersionAttribute attribute:
+                            str4 = attribute.Version;
+                            break;
+                    }
+                Bridge._library._msg("[ MODID : " + str2 + " ][ MODNAME : " + str3 + " ][ VERSION : " + str4 +
+                                     " ]");
 
                 foreach (var t in assembly.GetTypes())
                     if (t.IsClass && t.Name == "Main")
+                    {
                         Activator.CreateInstance(t);
-                    // Bridge._library._msg(t.Name);
+                     Bridge._library._msg(t.Name);
+                }
             }
         }
     }

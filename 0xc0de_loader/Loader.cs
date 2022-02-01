@@ -17,7 +17,6 @@ namespace _0xc0de_loader
             Bridge._modInfo = new ModInfo();
             Bridge._Libs = new Libs();
 
-
             Bridge._Libs.Init();
             Bridge._config.Load();
         }
@@ -25,7 +24,7 @@ namespace _0xc0de_loader
 
     public class Config
     {
-        public Data _cd = new Data();
+        private readonly Data _cd = new Data();
         public Library lib = new Library();
 
         public void Load()
@@ -36,7 +35,7 @@ namespace _0xc0de_loader
             Bridge._modLoader.Load();
         }
 
-        public void Check()
+        private void Check()
         {
             if (!File.Exists(_cd.PathIniFile) || !Directory.Exists(_cd.FolderName))
             {
@@ -49,7 +48,7 @@ namespace _0xc0de_loader
             }
         }
 
-        public void CreateConfig()
+        private void CreateConfig()
         {
             try
             {
@@ -71,12 +70,10 @@ namespace _0xc0de_loader
                 lib._msg("Error when try create Loader Folder  - " + e);
             }
 
-
             try
             {
                 var inif = new IniFile(_cd.PathIniFile);
                 inif.Section(_cd.Section[0]).Set(_cd.Key0[0], _cd.Key1[0]);
-
 
                 inif.Save(_cd.PathIniFile);
             }
@@ -86,7 +83,7 @@ namespace _0xc0de_loader
             }
         }
 
-        public void CreateData()
+        private void CreateData()
         {
             _cd.FolderName = "Loader";
             _cd.FileName = "0xc0de_config.ini";
