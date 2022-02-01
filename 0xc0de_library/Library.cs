@@ -36,6 +36,17 @@ namespace _0xc0de_library
             
         }
 
+        public void _msg1(string format, object arg0 , object arg1 = null, object arg2 = null , object arg3 = null)
+        {
+            using (TextWriter tw = File.AppendText("Loader/Log.txt"))
+            {
+                format = String.Format(format, arg0,arg1,arg2,arg3);
+                tw.WriteLine(format);
+                //tw.Flush();
+            }
+        }
+       
+
     }
 
      

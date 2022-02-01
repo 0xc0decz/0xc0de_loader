@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using _0xc0de_library;
 
@@ -33,7 +34,7 @@ namespace _0xc0de_loader
             }
             else
             {
-                string[] dllsFiles = Directory.GetFiles(Bridge._ModConfig.ModPath, " *.dll");
+                ModChecker();
                 int fileCount = Directory.GetFiles(Bridge._ModConfig.ModPath, "*.dll", SearchOption.TopDirectoryOnly)
                     .Length;
                 Bridge._library._msg("Mods in Folder : " + fileCount);
@@ -55,6 +56,61 @@ namespace _0xc0de_loader
                 
             }
            
+        }
+
+        static void ModChecker()
+        {
+            int fileCount = Directory.GetFiles(Bridge._ModConfig.ModPath, "*.dll", SearchOption.TopDirectoryOnly)
+                .Length;
+   
+
+
+            DirectoryInfo di = new DirectoryInfo(Bridge._ModConfig.ModPath);
+            FileInfo[] files = di.GetFiles("*.dll");
+            string str = "";
+            foreach (FileInfo file in files)
+            {
+                Bridge._library._msg(file.Name);
+                Assembly assembly = Assembly.LoadFile(file.Name);
+                if (assembly != null)
+                {
+
+                    foreach (Attribute attr in Attribute.GetCustomAttributes(assembly))
+                    {
+                        if (attr.GetType() == typeof(AssemblyMod.ModIDAttribute))
+                        {
+                            Bridge._library._msg1("Assembly ModID is \"{0}\".",
+                                ((AssemblyMod.ModIDAttribute) attr).Title);
+
+                        }
+                        else if (attr.GetType() == typeof(AssemblyMod.ModNameAttribute))
+                        {
+                            Bridge._library._msg1("Assembly Name is \"{0}\".",
+                                ((AssemblyMod.ModNameAttribute) attr).Title);
+
+
+                        }
+                        else if (attr.GetType() == typeof(AssemblyMod.ModVersionAttribute))
+                        {
+                            Bridge._library._msg1("Assembly Version is \"{0}\".",
+                                ((AssemblyMod.ModVersionAttribute)attr).Version);
+
+
+                        }
+
+                    }
+                }
+
+
+            }
+
+
+
+           /* for (int i = 0; i < fileCount; i++)
+            {
+                Assembly assembly = Assembly.LoadFile(Bridge._ModConfig.ModPath + "")
+            }*/
+
         }
       
 
