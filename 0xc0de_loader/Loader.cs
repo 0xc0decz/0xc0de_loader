@@ -5,27 +5,41 @@ using _0xc0de_library;
 using _0xc0de_library.INI;
 
 
+
+
 namespace _0xc0de_loader
 {
-    public static class Loader
+    public class Loader
     {
        
         public static void Main(string[] args)
         {
+            Bridge._ModConfig = new ModConfig();
+            Bridge._config = new Config();
+            Bridge._modLoader = new ModLoader();
+            Bridge._library = new Library();
+            Bridge._loader = new Loader();
+            Bridge._modInfo = new ModInfo();
+            
+            
             Config cfg = new Config();
+            
             cfg.Load();
         }
     }
 
     public class Config
     {
-        Library lib = new Library();
-        Data _cd = new Data();
+        public Library lib = new Library();
+        public Data _cd = new Data();
+      
         public void Load()
         {
 
             CreateData();
             Check();
+            
+            Bridge._modLoader.Load();
 
         }
         public void Check()
@@ -39,7 +53,7 @@ namespace _0xc0de_loader
             }
             else
             {
-                lib._msg("Loader Config file loaded successfully ( " + _cd.PathIniFile + " )");
+                Bridge._library._msg("Loader Config file loaded successfully ( " + _cd.PathIniFile + " )");
             }
         }
 
@@ -63,7 +77,7 @@ namespace _0xc0de_loader
             catch (Exception e)
             {
                 lib._msg("Error when try create Loader Folder  - " + e);
-                
+        
             }
           
             
@@ -81,6 +95,7 @@ namespace _0xc0de_loader
             catch (Exception e)
             {
                 lib._msg("Error when try insert DATA - " + e);
+               
             }
 
         }
@@ -97,7 +112,7 @@ namespace _0xc0de_loader
       
         }
 
-        class Data
+        public class Data
         {
             public string FolderName;
             public string FileName;
