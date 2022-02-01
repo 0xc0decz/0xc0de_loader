@@ -80,7 +80,20 @@ namespace _0xc0de_loader
                             str4 = ((ModVersionAttribute) attr).Version;
                     Bridge._library._msg("[ MODID : " + str2 + " ][ MODNAME : " + str3 + " ][ VERSION : " + str4 +
                                          " ]");
+                   
                 }
+
+                foreach (Type t in assembly.GetTypes())
+                {
+                    if (t.IsClass && t.Name == "Main")
+                    {
+                        Activator.CreateInstance(t);
+                        Bridge._library._msg(t.Name);
+                    }
+
+                }
+
+
             }
         }
     }

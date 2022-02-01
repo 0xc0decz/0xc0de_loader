@@ -15,11 +15,11 @@ namespace _0xc0de_loader
             Bridge._library = new Library();
             Bridge._loader = new Loader();
             Bridge._modInfo = new ModInfo();
+            Bridge._Libs = new Libs();
 
 
-            var cfg = new Config();
-
-            cfg.Load();
+            Bridge._Libs.Init();
+            Bridge._config.Load();
         }
     }
 
