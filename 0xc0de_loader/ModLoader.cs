@@ -29,9 +29,10 @@ namespace _0xc0de_loader
             }
             else
             {
-                var fileCount = Directory.GetFiles(Bridge._ModConfig.ModPath, "*.dll", SearchOption.TopDirectoryOnly)
-                    .Length;
-                Bridge._library._msg("Mods in Folder : " + fileCount);
+                /*  var fileCount = Directory.GetFiles(Bridge._ModConfig.ModPath, "*.dll", SearchOption.TopDirectoryOnly)
+                      .Length;*/
+                Bridge._library._msg("Mods in Folder : " +
+                                     Bridge._library.GetAllFile(Bridge._ModConfig.ModPath, null, "dll"));
                 ModChecker();
             }
         }
@@ -80,20 +81,12 @@ namespace _0xc0de_loader
                             str4 = ((ModVersionAttribute) attr).Version;
                     Bridge._library._msg("[ MODID : " + str2 + " ][ MODNAME : " + str3 + " ][ VERSION : " + str4 +
                                          " ]");
-                   
                 }
 
-                foreach (Type t in assembly.GetTypes())
-                {
+                foreach (var t in assembly.GetTypes())
                     if (t.IsClass && t.Name == "Main")
-                    {
                         Activator.CreateInstance(t);
-                        Bridge._library._msg(t.Name);
-                    }
-
-                }
-
-
+                    // Bridge._library._msg(t.Name);
             }
         }
     }

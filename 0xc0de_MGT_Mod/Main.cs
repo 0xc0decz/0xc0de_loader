@@ -21,11 +21,11 @@ namespace _0xc0de_MGT_Mod
         [HarmonyPatch]
         public static class Patch
         {
-            [HarmonyPrefix]
+            [HarmonyPostfix]
             [HarmonyPatch(typeof(mainScript), "Update")]
             public static void Update()
             {
-                if (Input.GetKeyDown(KeyCode.F))
+                if (Input.GetKey(KeyCode.F))
                 {
                     Application.Quit();
                 }

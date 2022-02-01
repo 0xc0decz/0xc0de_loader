@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using _0xc0de_library.AssemblyMod;
-
 
 namespace _0xc0de_library
 {
@@ -13,78 +8,62 @@ namespace _0xc0de_library
     {
         public string GetTime()
         {
-            DateTime time = DateTime.Now;
-            string format = "HH:mm:ss";
+            var time = DateTime.Now;
+            var format = "HH:mm:ss";
             return time.ToString(format);
         }
 
         public void _msg(string line, string filename = null)
         {
-
             if (filename != null)
-            {
                 using (TextWriter tw = File.AppendText("Loader/" + filename))
                 {
                     tw.WriteLine("[ " + GetTime() + " ] " + "0xc0de_LOG : " + line);
                     //tw.Flush();
                 }
-            }
             else
-            {
                 using (TextWriter tw = File.AppendText("Loader/Log.txt"))
                 {
                     tw.WriteLine("[ " + GetTime() + " ] " + "0xc0de_LOG : " + line);
                     //tw.Flush();
                 }
-            }
-
         }
 
-        public void CreateDir(string path , string foldername)
+        public void CreateDir(string path, string foldername)
         {
             var di = Directory.CreateDirectory(path + "/" + foldername);
         }
 
         public int GetAllFile(string path, string name = null, string ext = null)
         {
-            int fileCount = 0;
+            var fileCount = 0;
             if (name != null && ext == null)
-            {
                 fileCount = Directory.GetFiles(path, name + ".dll", SearchOption.TopDirectoryOnly)
                     .Length;
-            }
 
             if (name == null && ext != null)
-            {
-                fileCount = Directory.GetFiles(path,  "*." + ext, SearchOption.TopDirectoryOnly)
+                fileCount = Directory.GetFiles(path, "*." + ext, SearchOption.TopDirectoryOnly)
                     .Length;
-            }
 
             if (name != null && ext != null)
-            {
                 fileCount = Directory.GetFiles(path, name + "." + ext, SearchOption.TopDirectoryOnly)
                     .Length;
-            }
 
             if (name == null && ext == null)
-            {
                 fileCount = Directory.GetFiles(path, "*.*", SearchOption.TopDirectoryOnly)
                     .Length;
-            }
 
 
             return fileCount;
         }
-
-
-
-
     }
 
     public class Libs
     {
+        private readonly Library library = new Library();
 
-        Library library = new Library();
+        public string LibsDirectory { get; set; }
+
         public void Init()
         {
             Load();
@@ -93,7 +72,7 @@ namespace _0xc0de_library
         public void Load()
         {
             LibsDirectory = "Loader/Libs/";
-           CheckLibs();
+            CheckLibs();
             GetLibs();
         }
 
@@ -108,19 +87,14 @@ namespace _0xc0de_library
 
                 if (assembly != null)
                 {
-                    
                 }
-
             }
         }
-
-        public string LibsDirectory { get; set; }
 
         public void CheckLibs()
         {
             if (!Directory.Exists(LibsDirectory))
             {
-                
                 library._msg("Libs Folder not exists - " + LibsDirectory);
                 CreateLibs();
             }
@@ -138,6 +112,5 @@ namespace _0xc0de_library
                 library._msg("Error when try create Libs Folder  - " + e);
             }
         }
-
     }
 }
