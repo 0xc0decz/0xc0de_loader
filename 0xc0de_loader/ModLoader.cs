@@ -41,7 +41,7 @@ namespace _0xc0de_loader
         {
             try
             {
-                var di = Directory.CreateDirectory(Bridge._ModConfig.ModPath);
+                Directory.CreateDirectory(Bridge._ModConfig.ModPath);
                 Bridge._library._msg("Mods Directory successfully created ( " + Bridge._ModConfig.ModFolder + " )");
             }
             // ReSharper disable once CatchAllClause
@@ -53,13 +53,12 @@ namespace _0xc0de_loader
 
         private static void ModChecker()
         {
-            var fileCount = Directory.GetFiles(Bridge._ModConfig.ModPath, "*.dll", SearchOption.TopDirectoryOnly)
+            _ = Directory.GetFiles(Bridge._ModConfig.ModPath, "*.dll", SearchOption.TopDirectoryOnly)
                 .Length;
 
 
             var di = new DirectoryInfo(Bridge._ModConfig.ModPath);
             var files = di.GetFiles("*.dll");
-            var str = "";
             var str2 = "";
             var str3 = "";
             var str4 = "";
@@ -86,13 +85,14 @@ namespace _0xc0de_loader
                     }
                 Bridge._library._msg("[ MODID : " + str2 + " ][ MODNAME : " + str3 + " ][ VERSION : " + str4 +
                                      " ]");
-
+                ///todo
+                ///make custom class to inject
                 foreach (var t in assembly.GetTypes())
-                    if (t.IsClass && t.Name == "Main")
+                    if (t.IsClass && t.Name == "Main") 
                     {
                         Activator.CreateInstance(t);
                      Bridge._library._msg(t.Name);
-                }
+                    }
             }
         }
     }

@@ -21,6 +21,8 @@ using _0xc0de_MGT_Mod;
 [assembly: ModName(ModInfo.ModName)]
 [assembly: ModID(ModInfo.ModID)]
 [assembly: ModVersion(ModInfo.ModVer)]
+[assembly: ModAuthor(ModInfo.ModAuthor)]
+
 
 
 // Setting ComVisible to false makes the types in this assembly not visible
