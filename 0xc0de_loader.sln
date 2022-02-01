@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0xc0de_loader", "0xc0de_loa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0xc0de_library", "0xc0de_library\0xc0de_library.csproj", "{05203782-120D-43CD-8DC2-81B1F81400F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0xc0de_MGT_Mod", "0xc0de_MGT_Mod\0xc0de_MGT_Mod.csproj", "{A95162F1-A89B-40A8-A979-12E35CB9FC1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{05203782-120D-43CD-8DC2-81B1F81400F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05203782-120D-43CD-8DC2-81B1F81400F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05203782-120D-43CD-8DC2-81B1F81400F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A95162F1-A89B-40A8-A979-12E35CB9FC1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A95162F1-A89B-40A8-A979-12E35CB9FC1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A95162F1-A89B-40A8-A979-12E35CB9FC1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A95162F1-A89B-40A8-A979-12E35CB9FC1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

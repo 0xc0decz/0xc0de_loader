@@ -2,20 +2,26 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using _0xc0de_library.AssemblyMod;
-using _0xc0de_loader;
-
+using System.Reflection;
+using _0xc0de_MGT_Mod;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("0xc0de_loader")]
+[assembly: AssemblyTitle("0xc0de_MGT_Mod")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("0xc0de_loader")]
+[assembly: AssemblyProduct("0xc0de_MGT_Mod")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
+
+[assembly: ModName(ModInfo.ModName)]
+[assembly: ModID(ModInfo.ModID)]
+[assembly: ModVersion(ModInfo.ModVer)]
+
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
@@ -23,10 +29,7 @@ using _0xc0de_loader;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ddea4281-5459-4470-b630-db8c4f3a1746")]
-[assembly: ModName(ModInfo.ModName)]
-[assembly: ModID(ModInfo.ModID)]
-[assembly: ModVersion(ModInfo.ModVer)]
+[assembly: Guid("a95162f1-a89b-40a8-a979-12e35cb9fc1b")]
 
 // Version information for an assembly consists of the following four values:
 //
